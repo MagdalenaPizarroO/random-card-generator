@@ -24,16 +24,21 @@ function Numero() {
 
 function crearPinta() {
   let ArrPinta = ["♥", "♠", "♦", "♣"];
-  if (ArrPinta === "♥" || ArrPinta === "♦") {
+  let randomPinta = Math.floor(Math.random() * 4);
+  if (ArrPinta[randomPinta] === "♥" || ArrPinta[randomPinta] === "♦") {
     document.querySelector("#top").style.color = "red";
     document.querySelector("#bottom").style.color = "red";
   }
-  let randomPinta = Math.floor(Math.random() * 4);
+
   return ArrPinta[randomPinta];
 }
 
 window.onload = function() {
   document.querySelector("#center").innerHTML = Numero();
-  document.querySelector("#top").innerHTML = crearPinta();
-  document.querySelector("#bottom").innerHTML = crearPinta();
+  const pinta = crearPinta();
+  if (pinta === "♥" || pinta === "♦") {
+    document.querySelector("#center").style.color = "red";
+  }
+  document.querySelector("#top").innerHTML = pinta;
+  document.querySelector("#bottom").innerHTML = pinta;
 };
