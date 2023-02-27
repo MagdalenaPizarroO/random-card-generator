@@ -28,14 +28,12 @@ function crearPinta() {
     document.querySelector("#top").style.color = "red";
     document.querySelector("#bottom").style.color = "red";
   }
-  return ArrPinta[index];
+  let randomPinta = Math.floor(Math.random() * 4);
+  return ArrPinta[randomPinta];
 }
 
 window.onload = function() {
-  document.querySelector("#center").innerHTML = Numero(Index);
-  let randomPinta = Math.floor(Math.random() * 4);
-  let pinta = crearPinta(randomPinta);
-
-  document.querySelector("top").innerHTML = pinta;
-  document.querySelector("bottom").innerHTML = pinta;
+  document.querySelector("#center").innerHTML = Numero();
+  document.querySelector("#top").innerHTML = crearPinta();
+  document.querySelector("#bottom").innerHTML = crearPinta();
 };
