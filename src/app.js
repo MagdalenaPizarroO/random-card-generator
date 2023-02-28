@@ -3,7 +3,7 @@ import "bootstrap";
 import "./style.css";
 
 function Numero() {
-  let ArrNum = [
+  var ArrNum = [
     "A",
     "2",
     "3",
@@ -16,10 +16,18 @@ function Numero() {
     "10",
     "J",
     "Q",
-    "K"
+    "K",
+    "JOKER"
   ];
-  let randomNum = Math.floor(Math.random() * 13);
-  return ArrNum[randomNum];
+
+  let randomNum = Math.floor(Math.random() * ArrNum.length);
+  if (ArrNum[randomNum] === "JOKER") {
+    document.querySelector("#top").style.color = "white";
+    document.querySelector("#bottom").style.color = "white";
+    return "<img id='joker-image' style='width: 20rem; height: 27rem; margin: 0 ;' src='https://ih1.redbubble.net/image.356486953.0040/flat,750x,075,f-pad,750x1000,f8f8f8.u1.jpg' alt='JOKER' />";
+  } else {
+    return ArrNum[randomNum];
+  }
 }
 
 function crearPinta() {
@@ -36,16 +44,28 @@ function crearPinta() {
 window.onload = function() {
   document.querySelector("#center").innerHTML = Numero();
   const pinta = crearPinta();
+  const joker = Numero();
   if (pinta === "♥" || pinta === "♦") {
     document.querySelector("#center").style.color = "red";
   }
   document.querySelector("#top").innerHTML = pinta;
   document.querySelector("#bottom").innerHTML = pinta;
+  if (joker === "JOKER") {
+    document.querySelector("#top").style.color = "white";
+    document.querySelector("#bottom").style.color = "white";
+    document
+      .querySelector("#top")
+      .style.setProperty("color", "white", "important");
+    document
+      .querySelector("#bottom")
+      .style.setProperty("color", "white", "important");
+  }
 };
 
 function generarCarta() {
   document.querySelector("#center").innerHTML = Numero();
   const pinta = crearPinta();
+
   if (pinta === "♥" || pinta === "♦") {
     document.querySelector("#center").style.color = "red";
   } else {
@@ -53,6 +73,7 @@ function generarCarta() {
     document.querySelector("#top").style.color = "black";
     document.querySelector("#bottom").style.color = "black";
   }
+
   document.querySelector("#top").innerHTML = pinta;
   document.querySelector("#bottom").innerHTML = pinta;
 }
